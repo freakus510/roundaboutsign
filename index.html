@@ -1,401 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digital Billboard Advertising</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Cherry Valley Sign Company</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", system-ui, sans-serif;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+  }
 
-    body {
-      /* Smooth uninterrupted gradient across entire page */
-      background: linear-gradient(to bottom, #1a202c, #111827);
-      color: #e5e7eb;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+  /* Header / Hero */
+  .hero {
+    background: #f2f2f2;
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    margin: 0 0 10px;
+    font-weight: bold;
+  }
+  .hero p {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .btn-main {
+    background: #000;
+    color: #fff;
+    padding: 14px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+  }
 
-    header {
-      padding: 90px 8%;
-      text-align: center;
-    }
+  /* Gallery */
+  .gallery {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 10px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .gallery img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
 
-    header h1 {
-      font-size: 3.2rem;
-      font-weight: 900;
-      margin-bottom: 20px;
-      letter-spacing: -1px;
-      background: linear-gradient(90deg, #38bdf8, #14b8a6, #6366f1);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 6s ease infinite;
-    }
+  /* Contact Form */
+  .contact-section {
+    background: #fafafa;
+    padding: 50px 20px;
+  }
+  .contact-section h2 {
+    text-align: center;
+  }
+  .contact-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .contact-form label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+  }
+  .contact-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+  }
+  .contact-form button {
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px 0;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
 
-    header p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.2rem;
-      color: #cbd5f5;
-    }
-
-    header strong {
-      color: #ffffff;
-      font-weight: 800;
-    }
-
-    section.features {
-      padding: 80px 8%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 36px;
-    }
-
-    .feature {
-      background: #0b1220;
-      padding: 48px 36px;
-      border-radius: 22px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .feature:nth-child(1) { animation-delay: 0.1s; }
-    .feature:nth-child(2) { animation-delay: 0.3s; }
-    .feature:nth-child(3) { animation-delay: 0.5s; }
-
-    .feature:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 60px rgba(14,165,233,0.35);
-    }
-
-    .feature h3 {
-      font-size: 1.7rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      letter-spacing: -0.3px;
-      background: linear-gradient(90deg, #38bdf8, #14b8a6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 6s ease infinite;
-    }
-
-    .feature p {
-      font-size: 1.1rem;
-      color: #cbd5f5;
-      line-height: 1.65;
-    }
-
-    section.location-impressions {
-      padding: 90px 8%;
-    }
-
-    section.location-impressions h2 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    section.location-impressions p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.2rem;
-      text-align: center;
-      color: #cbd5f5;
-    }
-
-    .location-cards {
-      margin-top: 50px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
-    }
-
-    .location-card {
-      background: #0b1220;
-      padding: 40px 32px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .location-card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 25px 70px rgba(14,165,233,0.4);
-    }
-
-    .location-card h3 {
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: #38bdf8;
-      margin-bottom: 14px;
-    }
-
-    .location-card p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #cbd5f5;
-    }
-
-    .location-card strong {
-      font-size: 1.6rem;
-      background: linear-gradient(90deg, #38bdf8, #14b8a6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-      margin-top: 5px;
-    }
-
-    .map-container {
-      margin-top: 50px;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 700px; /* taller for easier navigation */
-      border: 0;
-    }
-
-    section.contact {
-      padding: 90px 8%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .contact-text h2 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #38bdf8, #14b8a6);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 6s ease infinite;
-    }
-
-    .contact-text p {
-      font-size: 1.15rem;
-      color: #cbd5f5;
-      max-width: 500px;
-    }
-
-    /* UPDATED FORM for Google Sheets */
-    form {
-      background: #0b1220;
-      padding: 40px;
-      border-radius: 22px;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    form:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 25px 60px rgba(14,165,233,0.35);
-    }
-
-    form label {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-      color: #94a3b8;
-    }
-
-    form input,
-    form textarea {
-      width: 100%;
-      margin-bottom: 18px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: none;
-      background: #020617;
-      color: #e5e7eb;
-      font-size: 1rem;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-
-    form input:focus,
-    form textarea:focus {
-      outline: none;
-      box-shadow: 0 0 12px rgba(14,165,233,0.45);
-      transform: translateY(-1px);
-    }
-
-    form textarea {
-      resize: none;
-      height: 120px;
-    }
-
-    form button {
-      width: 100%;
-      padding: 16px;
-      border-radius: 14px;
-      border: none;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-      background: linear-gradient(135deg, #38bdf8, #14b8a6);
-      color: #020617;
-      transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    form button:hover {
-      opacity: 0.9;
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 0 25px rgba(14,165,233,0.5);
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9rem;
-      color: #64748b;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @media (max-width: 900px) {
-      section.contact {
-        grid-template-columns: 1fr;
-      }
-
-      header h1 {
-        font-size: 2.4rem;
-      }
-    }
-  </style>
+  /* Footer */
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 18px 0;
+    background: #ececec;
+  }
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Digital Billboard Advertising That Gets Results</h1>
-    <p>
-      Put your brand in front of thousands every day with
-      <strong>high-visibility</strong>,
-      <strong>unforgettable</strong> digital billboards that drive
-      <strong>real-world results</strong>.
-    </p>
-  </header>
+<!-- Hero -->
+<section class="hero">
+  <h1>Outdoor Advertising Experts</h1>
+  <p>Helping businesses of all kinds achieve visibility & growth</p>
+  <a href="#contact" class="btn-main">Get Quote</a>
+</section>
 
-  <section class="features">
-    <div class="feature">
-      <h3>Unmatched Visibility</h3>
-      <p>
-        Our digital billboards are placed in <strong>high-traffic locations</strong>,
-        ensuring your message is seen by thousands of drivers and pedestrians
-        every single day.
-      </p>
-    </div>
+<!-- Gallery Preview -->
+<section class="gallery">
+  <img src="https://via.placeholder.com/150" alt="Sign sample 1">
+  <img src="https://via.placeholder.com/150" alt="Sign sample 2">
+  <img src="https://via.placeholder.com/150" alt="Sign sample 3">
+  <img src="https://via.placeholder.com/150" alt="Sign sample 4">
+</section>
 
-    <div class="feature">
-      <h3>Built to Be Remembered</h3>
-      <p>
-        Bright displays, bold messaging, and motion make your brand
-        <strong>stand out instantly</strong> and stay top-of-mind long after
-        viewers pass by.
-      </p>
-    </div>
+<!-- Contact Form -->
+<section class="contact-section" id="contact">
+  <h2>Contact Us</h2>
+  <form class="contact-form">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Your Name">
 
-    <div class="feature">
-      <h3>Proven Real-World Results</h3>
-      <p>
-        Digital outdoor advertising drives
-        <strong>brand awareness, foot traffic, and sales</strong> —
-        measurable results you can actually see.
-      </p>
-    </div>
-  </section>
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Your Email">
 
-  <section class="location-impressions">
-    <h2>📍 Strategic Location & Estimated Impressions</h2>
-    <p>
-      Located near <strong>42.30506767596947, -88.85368540302655</strong> just outside of Byron, Illinois,
-      this billboard catches commuter and local traffic, making it a high‑impact placement for outdoor
-      advertising exposure.
-    </p>
+    <label for="website">Business URL</label>
+    <input type="url" id="website" placeholder="Your Website">
 
-    <div class="location-cards">
-      <div class="location-card">
-        <h3>Daily Impressions</h3>
-        <p><strong>25,000–50,000+</strong> views/day in similar traffic areas.</p>
-      </div>
+    <button type="submit">Send</button>
+  </form>
+</section>
 
-      <div class="location-card">
-        <h3>Annual Reach</h3>
-        <p><strong>3M+</strong> impressions per year in prime placements.</p>
-      </div>
-
-      <div class="location-card">
-        <h3>Brand Recall</h3>
-        <p><strong>71%</strong> of viewers recall seeing the ad within a month.</p>
-      </div>
-    </div>
-
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps?q=42.30506767596947,-88.85368540302655&hl=en&z=16&output=embed"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </section>
-
-  <section class="contact">
-    <div class="contact-text">
-      <h2>Let’s Get Your Message Seen</h2>
-      <p>
-        Interested in digital billboard advertising?
-        Fill out the form and we’ll help you find the perfect placement
-        for maximum impact.
-      </p>
-    </div>
-
-    <!-- FORM POINTS TO GOOGLE SHEETS VIA WEB APP -->
-    <form action="https://script.google.com/macros/s/AKfycbynyWt0SDEh5qCH5gOt7NUbSWMdmvfVfCrP7FYTY4wClCto0XCPMRka3tcctDzPvG4/exec" method="POST">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Your name" required />
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="you@email.com" required />
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" placeholder="Tell us about your campaign..." required></textarea>
-
-      <button type="submit">Request More Info</button>
-    </form>
-  </section>
-
-  <footer>
-    © 2026 Digital Billboard Advertising. All rights reserved.
-  </footer>
+<!-- Footer -->
+<footer>
+  &copy; 2025 Cherry Valley Sign Company – All Rights Reserved
+</footer>
 
 </body>
 </html>
-

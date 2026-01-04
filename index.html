@@ -293,6 +293,25 @@
         .g-recaptcha {
     margin: 18px 0 22px;
 }
+        .form-message {
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  display: none;
+  text-align: center;
+}
+
+.form-message.success {
+  background: #16a34a;
+  color: #ecfdf5;
+}
+
+.form-message.error {
+  background: #dc2626;
+  color: #fef2f2;
+}
+
 
     </style>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -363,25 +382,26 @@
             </p>
         </div>
 
-        <form action="https://script.google.com/macros/s/AKfycbynyWt0SDEh5qCH5gOt7NUbSWMdmvfVfCrP7FYTY4wClCto0XCPMRka3tcctDzPvG4/exec" method="POST">
+       <form id="billboardForm" novalidate>
+  <label>Name</label>
+  <input type="text" name="name" required>
 
-   
-  <label for="name">Name</label>
-  <input type="text" id="name" name="name" required />
+  <label>Email</label>
+  <input type="email" name="email" required>
 
-  <label for="email">Email</label>
-  <input type="email" id="email" name="email" required />
+  <label>Phone</label>
+  <input type="tel" name="phone" required>
 
-  <label for="phone">Phone Number</label>
-  <input type="tel" id="phone" name="phone" required />
+  <label>Message</label>
+  <textarea name="message" required></textarea>
 
-  <label for="message">Message</label>
-  <textarea id="message" name="message" required></textarea>
-
-  <div class="g-recaptcha" data-sitekey="6Le-nz8sAAAAAD_bGy2kRenkxEN43g-i5Xi00zpO"></div>
+  <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
 
   <button type="submit">Request More Info</button>
 </form>
+
+<div id="formMessage" class="form-message"></div>
+
 
     </section>
 
@@ -389,9 +409,54 @@
         © 2026 Digital Billboard Advertising • Northern Illinois
     </footer>
 
+    <script>
+const FORM_URL = "https://script.google.com/macros/s/AKfycbynyWt0SDEh5qCH5gOt7NUbSWMdmvfVfCrP7FYTY4wClCto0XCPMRka3tcctDzPvG4/exec";
+
+const form = document.getElementById("billboardForm");
+const messageBox = document.getElementById("formMessage");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // 🚫 stop page reload
+
+  messageBox.style.display = "none";
+  messageBox.className = "form-message";
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(FORM_URL, {
+      method: "POST",
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      messageBox.textContent = "✅ Thank you! Your request has been received.";
+      messageBox.classList.add("success");
+      messageBox.style.display = "block";
+
+      form.reset();
+      grecaptcha.reset();
+    } else {
+      messageBox.textContent = "❌ " + result.error;
+      messageBox.classList.add("error");
+      messageBox.style.display = "block";
+    }
+
+  } catch (err) {
+    messageBox.textContent = "❌ Network error. Please try again later.";
+    messageBox.classList.add("error");
+    messageBox.style.display = "block";
+  }
+});
+</script>
+
+
 </body>
 
 </html>
+
 
 
 

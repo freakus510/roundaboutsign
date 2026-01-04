@@ -382,7 +382,7 @@
             </p>
         </div>
 
-       <form id="billboardForm" novalidate>
+      <form id="billboardForm" onsubmit="return false;">
   <label>Name</label>
   <input type="text" name="name" required>
 
@@ -397,10 +397,11 @@
 
   <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
 
-  <button type="submit">Request More Info</button>
+  <button type="button" id="submitBtn">Request More Info</button>
 </form>
 
 <div id="formMessage" class="form-message"></div>
+
 
 
     </section>
@@ -409,15 +410,14 @@
         © 2026 Digital Billboard Advertising • Northern Illinois
     </footer>
 
-    <script>
+<script>
 const FORM_URL = "https://script.google.com/macros/s/AKfycbynyWt0SDEh5qCH5gOt7NUbSWMdmvfVfCrP7FYTY4wClCto0XCPMRka3tcctDzPvG4/exec";
 
 const form = document.getElementById("billboardForm");
+const button = document.getElementById("submitBtn");
 const messageBox = document.getElementById("formMessage");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault(); // 🚫 stop page reload
-
+button.addEventListener("click", async () => {
   messageBox.style.display = "none";
   messageBox.className = "form-message";
 
@@ -432,30 +432,30 @@ form.addEventListener("submit", async (e) => {
     const result = await response.json();
 
     if (result.success) {
-      messageBox.textContent = "✅ Thank you! Your request has been received.";
+      messageBox.textContent = "✅ Thank you! Your request has been sent.";
       messageBox.classList.add("success");
-      messageBox.style.display = "block";
-
       form.reset();
       grecaptcha.reset();
     } else {
       messageBox.textContent = "❌ " + result.error;
       messageBox.classList.add("error");
-      messageBox.style.display = "block";
     }
 
   } catch (err) {
     messageBox.textContent = "❌ Network error. Please try again later.";
     messageBox.classList.add("error");
-    messageBox.style.display = "block";
   }
+
+  messageBox.style.display = "block";
 });
 </script>
+
 
 
 </body>
 
 </html>
+
 
 
 

@@ -162,6 +162,25 @@
             box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
         }
 
+        .media-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.billboard-image {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
+}
+
+.billboard-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
         .map-container iframe {
             width: 100%;
             height: 480px;
@@ -406,13 +425,19 @@
 
 
         <div class="split-grid">
-            <div class="map-container">
-                <iframe
-  src="https://www.google.com/maps?q=42.30506767596947,-88.85368540302655&t=k&z=16&output=embed"
-  loading="lazy">
-</iframe>
+            <div class="media-stack">
+  <div class="billboard-image">
+    <img src="billboard-location.jpg" alt="Digital billboard location in Byron, Illinois">
+  </div>
 
-            </div>
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps?q=42.30506767596947,-88.85368540302655&t=k&z=16&output=embed"
+      loading="lazy">
+    </iframe>
+  </div>
+</div>
+
 
             <div class="split-text">
                 <h3>High-Traffic Outdoor Exposure</h3>
@@ -560,6 +585,7 @@ else {
 </body>
 
 </html>
+
 
 
 

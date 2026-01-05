@@ -421,7 +421,7 @@
             </p>
         </div>
 
-      <form id="billboardForm" onsubmit="return false;">
+      <form id="billboardForm">
   <label>Name</label>
   <input type="text" name="name" required>
 
@@ -436,10 +436,11 @@
 
   <div class="g-recaptcha" data-sitekey="6Le-nz8sAAAAAD_bGy2kRenkxEN43g-i5Xi00zpO"></div>
 
-  <button type="button" id="submitBtn">
+  <button type="submit" id="submitBtn">
   <span class="btn-text">Request More Info</span>
   <span class="spinner" aria-hidden="true"></span>
 </button>
+
 
 </form>
 
@@ -460,7 +461,15 @@ const form = document.getElementById("billboardForm");
 const button = document.getElementById("submitBtn");
 const messageBox = document.getElementById("formMessage");
 
-button.addEventListener("click", async () => {
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // ⛔ STOP PAGE RELOAD
+
+  // Prevent double submit
+  if (button.disabled) return;
+
+  // Loading state
+  button.disabled = true;
+  button.classList.add("loading");
   messageBox.style.display = "none";
   messageBox.className = "form-message";
 
@@ -477,27 +486,36 @@ button.addEventListener("click", async () => {
     if (result.success) {
       messageBox.textContent = "✅ Thank you! Your request has been sent.";
       messageBox.classList.add("success");
+      messageBox.style.display = "block";
+
       form.reset();
       grecaptcha.reset();
+
+      // ✅ Keep button disabled after success
+      return;
     } else {
-      messageBox.textContent = "❌ " + result.error;
-      messageBox.classList.add("error");
+      throw new Error(result.error || "Submission failed");
     }
 
   } catch (err) {
-    messageBox.textContent = "❌ Network error. Please try again later.";
+    messageBox.textContent = "❌ " + err.message;
     messageBox.classList.add("error");
-  }
+    messageBox.style.display = "block";
 
-  messageBox.style.display = "block";
+    // Re-enable button on error
+    button.disabled = false;
+    button.classList.remove("loading");
+  }
 });
 </script>
+
 
 
 
 </body>
 
 </html>
+
 
 
 

@@ -484,16 +484,25 @@ form.addEventListener("submit", async (e) => {
     const result = await response.json();
 
     if (result.success) {
-      messageBox.textContent = "✅ Thank you! Your request has been sent.";
-      messageBox.classList.add("success");
-      messageBox.style.display = "block";
+  messageBox.textContent = "✅ Thank you! Your request has been sent.";
+  messageBox.classList.add("success");
+  messageBox.style.display = "block";
 
-      form.reset();
-      grecaptcha.reset();
+  form.reset();
+  grecaptcha.reset();
 
-      // ✅ Keep button disabled after success
-      return;
-    } else {
+  // ✅ Stop loading animation
+  button.classList.remove("loading");
+
+  // Optional: change button text
+  button.querySelector(".btn-text").textContent = "Submitted";
+
+  // Keep disabled so it can't be resubmitted
+  button.disabled = true;
+
+  return;
+}
+else {
       throw new Error(result.error || "Submission failed");
     }
 
@@ -515,6 +524,7 @@ form.addEventListener("submit", async (e) => {
 </body>
 
 </html>
+
 
 
 

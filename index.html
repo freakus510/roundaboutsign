@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 
 
 <head>
@@ -32,32 +32,28 @@
 
         /* ---------- HERO ---------- */
         header {
-  padding: 120px 8% 110px;
-  text-align: center;
-  max-width: 1400px;
-  margin: 0 auto 40px;
-  background:
-    radial-gradient(1200px 400px at 50% 0%, rgba(56,189,248,0.15), transparent),
-    linear-gradient(to bottom, rgba(2,6,23,0.95), rgba(11,18,32,0.95));
-  border-radius: 0 0 32px 32px;
-  border-bottom: 6px solid rgba(56, 189, 248, 0.15);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.7);
-}
+            padding: 120px 8% 110px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            background:
+                radial-gradient(1200px 400px at 50% 0%, rgba(56, 189, 248, 0.15), transparent),
+                linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(11, 18, 32, 0.95));
+            border-radius: 0 0 32px 32px;
+            border-bottom: 6px solid rgba(56, 189, 248, 0.15);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+        }
 
 
         header {
             border: 6px solid rgba(56, 189, 248, 0.12);
         }
 
-        header h1 {
-            font-size: clamp(2.6rem, 5vw, 4rem);
-            font-weight: 900;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(90deg, #38bdf8, #14b8a6, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 8s ease infinite;
+        .hero-logo {
+            width: clamp(280px, 40vw, 700px);
+            height: auto;
+            display: block;
+            margin: 0 auto 24px;
         }
 
         header p {
@@ -80,11 +76,11 @@
         }
 
         section h2 {
-    font-size: 2.6rem;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 12px;
-}
+            font-size: 2.6rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 12px;
+        }
 
         section>p {
             max-width: 820px;
@@ -93,19 +89,20 @@
             text-align: center;
             color: #cbd5f5;
         }
-        
-        section + section {
-    border-top: 4px solid rgba(148, 163, 184, 0.15);
-}
+
+        section+section {
+            border-top: 4px solid rgba(148, 163, 184, 0.15);
+        }
 
         /* ---------- SPLIT GRID ---------- */
         .split-grid {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 70px;
-  align-items: stretch; /* ⬅️ THIS IS KEY */
-}
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 70px;
+            align-items: stretch;
+            /* ⬅️ THIS IS KEY */
+        }
 
 
 
@@ -164,22 +161,22 @@
         }
 
         .media-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
 
-.billboard-image {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
-}
+        .billboard-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
+        }
 
-.billboard-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+        .billboard-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
 
         .map-container iframe {
@@ -313,91 +310,88 @@
                 grid-template-columns: 1fr;
             }
         }
-        
+
         .g-recaptcha {
-    margin: 18px 0 22px;
-}
+            margin: 18px 0 22px;
+        }
+
         .form-message {
-  margin-top: 20px;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  display: none;
-  text-align: center;
-}
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+        }
 
-.form-message.success {
-  background: #16a34a;
-  color: #ecfdf5;
-}
+        .form-message.success {
+            background: #16a34a;
+            color: #ecfdf5;
+        }
 
-.form-message.error {
-  background: #dc2626;
-  color: #fef2f2;
-}
+        .form-message.error {
+            background: #dc2626;
+            color: #fef2f2;
+        }
 
         #submitBtn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-#submitBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+        #submitBtn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
 
-/* Spinner */
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 3px solid rgba(255, 255, 255, 0.4);
-  border-top-color: #ffffff;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  display: none;
-}
+        /* Spinner */
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-/* Loading state */
-.loading .spinner {
-  display: inline-block;
-}
+        /* Loading state */
+        .loading .spinner {
+            display: inline-block;
+        }
 
-.loading .btn-text {
-  opacity: 0.8;
-}
+        .loading .btn-text {
+            opacity: 0.8;
+        }
 
         .section-header {
-  max-width: 900px;
-  margin: 0 auto 40px;
-}
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
 
-.stats {
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(148,163,184,0.2);
-}
+        .stats {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+        }
 
-.contact {
-  background: linear-gradient(
-    to right,
-    rgba(11,18,32,0.6),
-    rgba(2,6,23,0.6)
-  );
-  padding: 90px 8%;
-  border-radius: 32px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-}
-
-
+        .contact {
+            background: linear-gradient(to right,
+                    rgba(11, 18, 32, 0.6),
+                    rgba(2, 6, 23, 0.6));
+            padding: 90px 8%;
+            border-radius: 32px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        }
     </style>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -406,7 +400,7 @@
 
     <!-- HERO -->
     <header>
-        <h1>Roundabout Billboard</h1>
+        <img src="whiteLogoTrans.png" alt="Roundabout Billboard Logo" class="hero-logo">
         <p>
             Professionally managed digital billboards delivering
             <strong>high-visibility outdoor advertising</strong>
@@ -417,27 +411,25 @@
     <!-- LOCATION -->
     <section>
         <div class="section-header">
-  <h2>Strategic Billboard Location</h2>
-  <p>
-    Positioned near <strong>placeholder</strong>, this digital billboard
-    captures consistent commuter and local traffic every day.
-  </p>
-</div>
+            <h2>Strategic Billboard Location</h2>
+            <p>
+                Positioned near <strong>placeholder</strong>, this digital billboard
+                captures consistent commuter and local traffic every day.
+            </p>
+        </div>
 
 
         <div class="split-grid">
             <div class="media-stack">
-  <div class="billboard-image">
-    <img src="billboard-location.jpg" alt="Digital billboard location in Byron, Illinois">
-  </div>
+                <div class="billboard-image">
+                    <img src="billboard-location.jpg" alt="Digital billboard location in Byron, Illinois">
+                </div>
 
-  <div class="map-container">
-    <iframe
-      src="https://www.google.com/maps?q=42.30506767596947,-88.85368540302655&t=k&z=16&output=embed"
-      loading="lazy">
-    </iframe>
-  </div>
-</div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps?q=42.30506767596947,-88.85368540302655&t=k&z=16&output=embed" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
 
 
             <div class="split-text">
@@ -452,19 +444,19 @@
                 </p>
 
                 <div class="stats">
-  <div class="stat">
-    <strong>High Visibility</strong>
-    <span>Unavoidable roadside exposure</span>
-  </div>
-  <div class="stat">
-    <strong>Prime Location</strong>
-    <span>Positioned on a busy local corridor</span>
-  </div>
-  <div class="stat">
-    <strong>Digital Flexibility</strong>
-    <span>Easy creative updates & scheduling</span>
-  </div>
-</div>
+                    <div class="stat">
+                        <strong>High Visibility</strong>
+                        <span>Unavoidable roadside exposure</span>
+                    </div>
+                    <div class="stat">
+                        <strong>Prime Location</strong>
+                        <span>Positioned on a busy local corridor</span>
+                    </div>
+                    <div class="stat">
+                        <strong>Digital Flexibility</strong>
+                        <span>Easy creative updates & scheduling</span>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -481,30 +473,30 @@
             </p>
         </div>
 
-      <form id="billboardForm">
-  <label>Name</label>
-  <input type="text" name="name" required>
+        <form id="billboardForm">
+            <label>Name</label>
+            <input type="text" name="name" required>
 
-  <label>Email</label>
-  <input type="email" name="email" required>
+            <label>Email</label>
+            <input type="email" name="email" required>
 
-  <label>Phone</label>
-  <input type="tel" name="phone" required>
+            <label>Phone</label>
+            <input type="tel" name="phone" required>
 
-  <label>Message</label>
-  <textarea name="message" required></textarea>
+            <label>Message</label>
+            <textarea name="message" required></textarea>
 
-  <div class="g-recaptcha" data-sitekey="6Le-nz8sAAAAAD_bGy2kRenkxEN43g-i5Xi00zpO"></div>
+            <div class="g-recaptcha" data-sitekey="6Le-nz8sAAAAAD_bGy2kRenkxEN43g-i5Xi00zpO"></div>
 
-  <button type="submit" id="submitBtn">
-  <span class="btn-text">Request More Info</span>
-  <span class="spinner" aria-hidden="true"></span>
-</button>
+            <button type="submit" id="submitBtn">
+                <span class="btn-text">Request More Info</span>
+                <span class="spinner" aria-hidden="true"></span>
+            </button>
 
 
-</form>
+        </form>
 
-<div id="formMessage" class="form-message"></div>
+        <div id="formMessage" class="form-message"></div>
 
 
 
@@ -514,71 +506,70 @@
         © 2026 Roundabout Ventures LLC | All Rights Reserved
     </footer>
 
-    
 
-<script>
-const FORM_URL = "https://script.google.com/macros/s/AKfycbynyWt0SDEh5qCH5gOt7NUbSWMdmvfVfCrP7FYTY4wClCto0XCPMRka3tcctDzPvG4/exec";
 
-const form = document.getElementById("billboardForm");
-const button = document.getElementById("submitBtn");
-const messageBox = document.getElementById("formMessage");
+    <script>
+        const FORM_URL = "https://script.google.com/macros/s/AKfycbynyWt0SDEh5qCH5gOt7NUbSWMdmvfVfCrP7FYTY4wClCto0XCPMRka3tcctDzPvG4/exec";
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault(); // ⛔ STOP PAGE RELOAD
+        const form = document.getElementById("billboardForm");
+        const button = document.getElementById("submitBtn");
+        const messageBox = document.getElementById("formMessage");
 
-  // Prevent double submit
-  if (button.disabled) return;
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault(); // ⛔ STOP PAGE RELOAD
 
-  // Loading state
-  button.disabled = true;
-  button.classList.add("loading");
-  messageBox.style.display = "none";
-  messageBox.className = "form-message";
+            // Prevent double submit
+            if (button.disabled) return;
 
-  const formData = new FormData(form);
+            // Loading state
+            button.disabled = true;
+            button.classList.add("loading");
+            messageBox.style.display = "none";
+            messageBox.className = "form-message";
 
-  try {
-    const response = await fetch(FORM_URL, {
-      method: "POST",
-      body: formData
-    });
+            const formData = new FormData(form);
 
-    const result = await response.json();
+            try {
+                const response = await fetch(FORM_URL, {
+                    method: "POST",
+                    body: formData
+                });
 
-    if (result.success) {
-  messageBox.textContent = "✅ Thank you! Your request has been sent.";
-  messageBox.classList.add("success");
-  messageBox.style.display = "block";
+                const result = await response.json();
 
-  form.reset();
-  grecaptcha.reset();
+                if (result.success) {
+                    messageBox.textContent = "✅ Thank you! Your request has been sent.";
+                    messageBox.classList.add("success");
+                    messageBox.style.display = "block";
 
-  // ✅ Stop loading animation
-  button.classList.remove("loading");
+                    form.reset();
+                    grecaptcha.reset();
 
-  // Optional: change button text
-  button.querySelector(".btn-text").textContent = "Submitted";
+                    // ✅ Stop loading animation
+                    button.classList.remove("loading");
 
-  // Keep disabled so it can't be resubmitted
-  button.disabled = true;
+                    // Optional: change button text
+                    button.querySelector(".btn-text").textContent = "Submitted";
 
-  return;
-}
-else {
-      throw new Error(result.error || "Submission failed");
-    }
+                    // Keep disabled so it can't be resubmitted
+                    button.disabled = true;
 
-  } catch (err) {
-    messageBox.textContent = "❌ " + err.message;
-    messageBox.classList.add("error");
-    messageBox.style.display = "block";
+                    return;
+                } else {
+                    throw new Error(result.error || "Submission failed");
+                }
 
-    // Re-enable button on error
-    button.disabled = false;
-    button.classList.remove("loading");
-  }
-});
-</script>
+            } catch (err) {
+                messageBox.textContent = "❌ " + err.message;
+                messageBox.classList.add("error");
+                messageBox.style.display = "block";
+
+                // Re-enable button on error
+                button.disabled = false;
+                button.classList.remove("loading");
+            }
+        });
+    </script>
 
 
 
@@ -586,4 +577,3 @@ else {
 </body>
 
 </html>
-

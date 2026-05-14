@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Roundabout Billboard</title>
@@ -31,9 +32,22 @@ body {
     color: #eaf2fb;
 }
 
+.g-recaptcha {
+    margin-bottom: 18px;
+}
+
 section {
     background: rgba(255,255,255,0.02);
     border-radius: 18px;
+}
+
+form button {
+    cursor: pointer;
+}
+
+form button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
 }
 
 /* ---------- HERO ---------- */
@@ -322,6 +336,7 @@ form button {
             <input placeholder="Email">
             <input placeholder="Phone">
             <textarea placeholder="Message"></textarea>
+            <div class="g-recaptcha" data-sitekey="6LeCIOosAAAAADJvCH582YzRmYmT4lw09F77XwgL"></div>
             <button type="submit">Request Info</button>
         </form>
 
@@ -370,6 +385,56 @@ window.addEventListener("scroll", () => {
     if (box.getBoundingClientRect().top < window.innerHeight) {
         animate();
     }
+});
+</script>
+
+<script>
+const FORM_URL = "https://script.google.com/macros/s/AKfycbynyWt0SDEh5qCH5gOt7NUbSWMdmvfVfCrP7FYTY4wClCto0XCPMRka3tcctDzPvG4/exec";
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector("button");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    try {
+        const formData = new FormData(form);
+
+        // reCAPTCHA token check (important)
+        const captchaResponse = grecaptcha.getResponse();
+        if (!captchaResponse) {
+            alert("Please complete the reCAPTCHA.");
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Request Info";
+            return;
+        }
+
+        formData.append("g-recaptcha-response", captchaResponse);
+
+        const res = await fetch(FORM_URL, {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+            alert("Request sent successfully!");
+            form.reset();
+            grecaptcha.reset();
+        } else {
+            throw new Error(result.error || "Submission failed");
+        }
+
+    } catch (err) {
+        alert("Error: " + err.message);
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Request Info";
 });
 </script>
 

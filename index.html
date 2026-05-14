@@ -8,20 +8,13 @@
 
 <style>
 :root {
-    --bg0: #050b14;
-    --bg1: #071426;
-    --bg2: #0b1d33;
-
+    --bg: #050b14;
     --text: #e6edf5;
     --muted: #a7b4c4;
-
     --accent: #4fb6c6;
-
-    --card: rgba(15, 25, 40, 0.6);
-    --border: rgba(148, 163, 184, 0.14);
+    --border: rgba(148,163,184,0.14);
 }
 
-/* ---------- GLOBAL ---------- */
 * {
     margin: 0;
     padding: 0;
@@ -30,71 +23,38 @@
 }
 
 body {
-    background: radial-gradient(circle at top, #0b1d33, var(--bg0));
+    background: radial-gradient(circle at top, #0b1d33, var(--bg));
     color: var(--text);
-    overflow-x: hidden;
-}
-
-/* ---------- SUBTLE MOVING BACKGROUND ---------- */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(79,182,198,0.10), transparent 40%),
-                radial-gradient(circle at 80% 60%, rgba(79,182,198,0.06), transparent 45%);
-    animation: floatBG 12s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 0;
-}
-
-@keyframes floatBG {
-    from { transform: translateY(0px); }
-    to { transform: translateY(10px); }
-}
-
-/* ---------- CONTENT WRAPPER ---------- */
-main {
-    position: relative;
-    z-index: 2;
 }
 
 /* ---------- HERO ---------- */
 header {
     text-align: center;
-    padding: 90px 6% 40px;
-    position: relative;
+    padding: 80px 6% 40px;
 }
 
 .hero-logo {
     width: clamp(320px, 55vw, 850px);
-    margin: auto;
-    display: block;
 }
 
 header p {
-    max-width: 760px;
-    margin: 18px auto;
+    margin-top: 14px;
     color: var(--muted);
-    font-size: 1.2rem;
 }
 
 /* ---------- IMPRESSIONS ---------- */
 .impressions {
-    margin: 40px auto 0;
+    margin: 35px auto 0;
     max-width: 1000px;
-    padding: 40px 20px;
+    padding: 36px;
     border-radius: 20px;
     text-align: center;
-
-    background: linear-gradient(135deg,
-        rgba(79,182,198,0.12),
-        rgba(10,18,32,0.6));
-
+    background: rgba(79,182,198,0.10);
     border: 1px solid var(--border);
 }
 
 .impressions h1 {
-    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-size: clamp(2.2rem,4vw,3.4rem);
     font-weight: 900;
 }
 
@@ -102,117 +62,173 @@ header p {
     color: var(--accent);
 }
 
-/* ---------- CTA STICKY BUTTON ---------- */
-.sticky-cta {
-    position: fixed;
-    bottom: 18px;
-    right: 18px;
-    z-index: 999;
-
-    background: var(--accent);
-    color: #06121f;
-    padding: 14px 18px;
-    border-radius: 999px;
-    font-weight: 800;
-    text-decoration: none;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-}
-
 /* ---------- SECTIONS ---------- */
 section {
     padding: 90px 8%;
-    max-width: 1500px;
+    max-width: 1400px;
     margin: auto;
 }
 
-section h2 {
-    font-size: 2.6rem;
+h2 {
     text-align: center;
-    margin-bottom: 10px;
+    font-size: 3.4rem;
+    font-weight: 900;
 }
 
-/* ---------- GRID ---------- */
-.split-grid {
-    margin-top: 40px;
+/* ---------- NEW CLEAN GRID ---------- */
+.media-grid {
+    margin-top: 45px;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 70px;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
 
-/* ---------- STATS ---------- */
-.stats {
-    margin-top: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+/* MAP */
+.map iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
-.stat {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 20px;
-    border-radius: 16px;
+/* IMAGE */
+.image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+section {
+    position: relative;
+}
+
+section:first-of-type {
+    position: relative;
+}
+
+/* top divider ONLY for Strategic Location (first section after hero) */
+section:nth-of-type(1)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(79, 182, 198, 0.25),
+        rgba(148, 163, 184, 0.15),
+        rgba(79, 182, 198, 0.25),
+        transparent
+    );
+}
+
+/* pull section content closer to divider */
+section:nth-of-type(1) {
+    padding-top: 50px; /* was ~100px+ before */
+}
+
+/* divider bar between sections */
+section:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 8%;
+    width: 84%;
+    height: 2px;
+opacity: 0.8;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(79, 182, 198, 0.25),
+        rgba(148, 163, 184, 0.15),
+        rgba(79, 182, 198, 0.25),
+        transparent
+    );
 }
 
 /* ---------- PRICING ---------- */
 .pricing {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 40px;
+    gap: 22px;
+    margin-top: 50px;
 }
 
 .price-card {
-    background: var(--card);
+    background: rgba(15,25,40,0.65);
     border: 1px solid var(--border);
-    padding: 26px;
+    padding: 30px;
     border-radius: 18px;
     text-align: center;
+    transition: 0.25s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(79,182,198,0.4);
 }
 
 .price-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 900;
 }
 
 .price {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 900;
-    margin: 10px 0;
     color: var(--accent);
+    margin-top: 10px;
 }
 
-/* ---------- TRAFFIC PROOF ---------- */
-.proof {
-    margin-top: 50px;
+/* ---------- CONTACT ---------- */
+.contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+}
+
+form {
+    background: rgba(15,25,40,0.65);
     padding: 30px;
     border-radius: 18px;
     border: 1px solid var(--border);
-    background: rgba(10,18,32,0.5);
 }
 
-.proof h3 {
-    margin-bottom: 10px;
-}
-
-/* ---------- MAP ---------- */
-.map iframe {
+form input,
+form textarea {
     width: 100%;
-    height: 420px;
-    border-radius: 18px;
+    padding: 12px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+    color: white;
+}
+
+form button {
+    width: 100%;
+    padding: 14px;
     border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    background: var(--accent);
+    color: #06121f;
 }
 
 /* ---------- MOBILE ---------- */
 @media (max-width: 900px) {
-    .split-grid,
-    .pricing {
+    .media-grid,
+    .pricing,
+    .contact {
         grid-template-columns: 1fr;
-    }
-
-    .sticky-cta {
-        width: calc(100% - 36px);
-        text-align: center;
     }
 }
 </style>
@@ -220,46 +236,29 @@ section h2 {
 
 <body>
 
-<a class="sticky-cta" href="#contact">Request Pricing</a>
-
-<main>
-
 <header>
     <img src="whiteLogoTrans.png" class="hero-logo">
-
     <p>High-visibility digital billboard advertising in Byron, Illinois.</p>
-
-    <div class="impressions">
-        <h1><span id="count">0</span>+ Impressions Per Week</h1>
-        <p>Estimated real-world vehicle exposure</p>
-    </div>
 </header>
 
 <section>
     <h2>Strategic Location</h2>
 
-    <div class="split-grid">
+    <div class="media-grid">
 
-        <div>
-            <img src="billboard-location.jpg" style="width:100%; border-radius:18px;">
+        <div class="map">
+            <iframe src="https://www.google.com/maps?q=42.30506767596947,-88.85368540302655&t=k&z=16&output=embed"></iframe>
         </div>
 
-        <div>
-            <div class="stats">
-                <div class="stat">High commuter visibility</div>
-                <div class="stat">Main traffic corridor placement</div>
-                <div class="stat">Digital dynamic ad rotation</div>
-            </div>
-
-            <div class="proof">
-                <h3>Why this impression number is real</h3>
-                <p>
-                    Based on average daily traffic counts × directional flow × repeat exposure.
-                    This location captures consistent commuter + local loop traffic.
-                </p>
-            </div>
+        <div class="image">
+            <img src="billboard-location.jpg">
         </div>
 
+    </div>
+
+    <!-- MOVED HERE UNDER MAP + IMAGE -->
+    <div class="impressions" style="margin-top:40px;">
+        <h1><span id="count">loading...</span>+ Impressions Per Week</h1>
     </div>
 </section>
 
@@ -267,66 +266,100 @@ section h2 {
     <h2>Advertising Options</h2>
 
     <div class="pricing">
-        <div class="price-card">
-            <h3>Starter</h3>
-            <div class="price">$199/mo</div>
-            <p>Rotating ad placement</p>
-        </div>
 
-        <div class="price-card">
-            <h3>Standard</h3>
-            <div class="price">$349/mo</div>
-            <p>Higher frequency rotation</p>
-        </div>
-
-        <div class="price-card">
-            <h3>Premium</h3>
-            <div class="price">$599/mo</div>
-            <p>Priority exposure blocks</p>
+    <div class="price-card">
+        <h3>Full</h3>
+        <div class="price">1,440</div>
+        <div style="color:#a7b4c4; margin-top:8px;">
+            ads/day<br>
+            <small>(every 1 minute rotation)</small>
         </div>
     </div>
+
+    <div class="price-card">
+        <h3>Half</h3>
+        <div class="price">720</div>
+        <div style="color:#a7b4c4; margin-top:8px;">
+            ads/day<br>
+            <small>(every 2 minute rotation)</small>
+        </div>
+    </div>
+
+    <div class="price-card">
+        <h3>Quarter</h3>
+        <div class="price">360</div>
+        <div style="color:#a7b4c4; margin-top:8px;">
+            ads/day<br>
+            <small>(every 4 minute rotation)</small>
+        </div>
+    </div>
+
+</div>
 </section>
 
 <section id="contact">
     <h2>Get Started</h2>
 
-    <div class="map">
-        <iframe src="https://www.google.com/maps?q=42.30506767596947,-88.85368540302655&t=k&z=16&output=embed"></iframe>
+    <div class="contact">
+
+        <div>
+            <p style="color:#a7b4c4; max-width:400px;">
+                Request availability and pricing for this digital billboard location.
+            </p>
+        </div>
+
+        <form>
+            <input placeholder="Name">
+            <input placeholder="Email">
+            <input placeholder="Phone">
+            <textarea placeholder="Message"></textarea>
+            <button type="submit">Request Info</button>
+        </form>
+
     </div>
 </section>
 
-</main>
-
 <script>
-/* ---------- COUNTER ANIMATION ---------- */
 const target = 164360;
-const counter = document.getElementById("count");
+const el = document.getElementById("count");
 
 let started = false;
 
-function animateCount() {
+function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+}
+
+function animate() {
     if (started) return;
     started = true;
 
-    let current = 0;
-    const step = Math.ceil(target / 80);
+    const duration = 2200; // total animation time (ms)
+    const startTime = performance.now();
 
-    const interval = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(interval);
+    function step(now) {
+        const elapsed = now - startTime;
+        let progress = elapsed / duration;
+
+        if (progress > 1) progress = 1;
+
+        // smooth easing (key fix)
+        const eased = easeOutCubic(progress);
+
+        const value = Math.floor(eased * target);
+        el.textContent = value.toLocaleString();
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
         }
-        counter.textContent = current.toLocaleString();
-    }, 20);
+    }
+
+    requestAnimationFrame(step);
 }
 
 window.addEventListener("scroll", () => {
-    const el = document.querySelector(".impressions");
-    const rect = el.getBoundingClientRect();
-
-    if (rect.top < window.innerHeight) {
-        animateCount();
+    const box = document.querySelector(".impressions");
+    if (box.getBoundingClientRect().top < window.innerHeight) {
+        animate();
     }
 });
 </script>
